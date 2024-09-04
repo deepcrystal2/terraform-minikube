@@ -1,0 +1,9 @@
+aws_region = "ap-northeast-2"
+backend_minikube_bucket = "jylee-terraform-eks"
+backend_minikube_bucket_key = "minikube/terraform.tfstate"
+vpc_name       = "jylee-minikube-vpc"
+vpc_cidr       = "10.0.0.0/16"
+public_subnets = ["10.0.1.0/24"]
+instance_type  = "t3.small"
+minikube_security_group = "jylee-minikube-sg"
+minikube_ec2_instance = "jylee-minikube-server"
