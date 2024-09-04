@@ -18,7 +18,7 @@ module "vpc" {
   }
 
   public_subnet_tags = {
-    Name = "jenkins-subnet"
+    Name = "minikube-subnet"
   }
 }
 
@@ -26,8 +26,8 @@ module "vpc" {
 module "sg" {
   source = "terraform-aws-modules/security-group/aws"
 
-  name        = var.jenkins_security_group
-  description = "Security Group for Jenkins Server"
+  name        = var.minikube_security_group
+  description = "Security Group for minikube Server"
   vpc_id      = module.vpc.vpc_id
 
   ingress_with_cidr_blocks = [
@@ -72,10 +72,10 @@ module "sg" {
 module "ec2_instance" {
   source = "terraform-aws-modules/ec2-instance/aws"
 
-  name = var.jenkins_ec2_instance
+  name = var.minikube_ec2_instance
 
   instance_type               = var.instance_type
-  ami                         = "ami-07d737d4d8119ad79"
+  ami                         = "ami-056a29f2eddc40520" # ubuntu22.04
   key_name                    = "jy-ec2-keypair"
   monitoring                  = true
   vpc_security_group_ids      = [module.sg.security_group_id]
